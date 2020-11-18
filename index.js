@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var express = require('express');
 
 var app = express();
-var port = process.env.PORT || 8005;
+var port = process.env.PORT || 8080;
 var responseStr = "MySQL Data:";
 
 app.get('/',function(req,res){
@@ -25,7 +25,7 @@ app.get('/',function(req,res){
    console.log(connectionOptions);
 
    var connection = mysql.createConnection(connectionOptions);
-   var queryStr = "SELECT * FROM MOE_ITEM_T";
+   var queryStr = 'SELECT * FROM MOE_ITEM_T';
    
    connection.connect();
  
