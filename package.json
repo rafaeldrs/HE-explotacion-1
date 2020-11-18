@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/rafaeldrs/node-mysql-docker/issues"
   },
-  "homepage": "https://github.com/rafaeldrs/node-mysql-docker#readme"
+  "homepage": "https://github.com/rafaeldrs/node-mysql-docker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
 }
