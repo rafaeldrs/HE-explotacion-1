@@ -27,20 +27,6 @@ services:
       - MYSQL_PASSWORD=mipass 
       - MYSQL_DATABASE=mi_db
     container_name: mi-mysql-app
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:4.7
-    depends_on:
-      - mysql
-    networks:
-      - backend
-    ports:
-      - "30002:80"
-    environment:
-      - PMA_HOST=mi-mysql-app
-      - PMA_PORT= 3306
-    volumes:
-      - /sessions
-    container_name: mi-phpmyadmin-app
 networks:
   frontend:
   backend:
