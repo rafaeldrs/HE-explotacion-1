@@ -62,6 +62,9 @@ initializeDatabase(connection).then(() => {
                responseStr += users[0][i].name + '      |      ' + users[0][i].surname + '      |      ' + users[0][i].email + '<br>';
             }
 
+            responseStr += '<br><br><br><br><br><br><br><br>';
+            responseStr += 'Enhorabuena, capturaste la bandera: c6gY7R';
+
             console.log(responseStr);
             
             res.status(200).send(responseStr);
