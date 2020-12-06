@@ -49,17 +49,19 @@ initializeDatabase(connection).then(() => {
          const login = `SELECT * FROM users WHERE name='${req.query.uname}' AND password='${req.query.psw}'`;
          const logged_user = await Q.npost(connection, 'query', [login]);
 
-         if(logged_user[0][0] != null && logged_user[0][0].name != null) {
-            const queryStr = 'SELECT * FROM users';
-            const users = await Q.npost(connection, 'query', [queryStr]);
-            let responseStr = 'Name      |      Surname      |      Email <br>';
-            
-            for(let i = 0; i < users[0].length; i++) {
-               responseStr += users[0][i].name + '      |      ' + users[0][i].surname + '      |      ' + users[0][i].email + '<br>';
-            }
+         let responseStr = '';
 
-            responseStr += '<br><br><br><br><br><br><br><br>';
-            responseStr += 'Enhorabuena, capturaste la bandera: c6gY7R';
+         if(logged_user[0][0] != null && logged_user[0][0].name != null) {
+            responseStr += 'Enhorabuena, capturaste la bandera: c6gY7R <br> <br>';
+            
+            if(logged_user[0][0].name == 'admin345') {
+               responseStr += 'Enhorabuena, capturaste la segunda bandera: P9u7h2';
+            } else {
+               responseStr += 'Todavía queda otra bandera por capturar. <br>' 
+                     + 'Encuentra el nombre de usuario root/admin del sistema en la vulnerabilidad de otro puerto. <br>'
+                     + 'Una vez lo encuentres vuelve aquí e inicia sesión como root para ver la segunda bandera. <br>'
+                     + 'Ánimo';
+            }
 
             res.status(200).send(responseStr);
          } else {
@@ -70,6 +72,7 @@ initializeDatabase(connection).then(() => {
       }
    });
 
+   /*
    app.get('/login-post', async (req,res) => {
       try {
          res.sendFile('views/login.html', {root: __dirname })
@@ -103,7 +106,7 @@ initializeDatabase(connection).then(() => {
          console.error(err);
       }
    });
-   
+   */
    
    app.listen(port, function(){
        console.log('Sample mySQL app listening on port ' + port);
@@ -126,6 +129,6 @@ async function initializeDatabase(connection) {
    const insert2 = "INSERT INTO users VALUES ('Patrick', 'Williams', '567890', 'patrick@email.com')";
    await connection.query(insert2);
    
-   const insert3 = "INSERT INTO users VALUES ('admin', 'admin', 'Sup3Rs3CuR3p4SSW0rD', 'admin@email.com')";
+   const insert3 = "INSERT INTO users VALUES ('admin345', 'admin345', 'v1V4H4ck1nG3t1C0', 'admin@rafaeldrs.com')";
    await connection.query(insert3);
 }
