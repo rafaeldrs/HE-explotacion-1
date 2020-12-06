@@ -46,12 +46,8 @@ initializeDatabase(connection).then(() => {
    
    app.get('/users', async function(req,res){
       try {
-         console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-         console.log(req.query.uname)
-         console.log(req.query.psw)
          const login = `SELECT * FROM users WHERE name='${req.query.uname}' AND password='${req.query.psw}'`;
          const logged_user = await Q.npost(connection, 'query', [login]);
-         console.log(logged_user[0]);
 
          if(logged_user[0][0] != null && logged_user[0][0].name != null) {
             const queryStr = 'SELECT * FROM users';
@@ -65,8 +61,6 @@ initializeDatabase(connection).then(() => {
             responseStr += '<br><br><br><br><br><br><br><br>';
             responseStr += 'Enhorabuena, capturaste la bandera: c6gY7R';
 
-            console.log(responseStr);
-            
             res.status(200).send(responseStr);
          } else {
             res.redirect(`/?uname=${req.query.uname}&psw=${req.query.psw}`);
@@ -115,28 +109,23 @@ initializeDatabase(connection).then(() => {
        console.log('Sample mySQL app listening on port ' + port);
    });
 }).catch((err) => {
-   console.log('000000000000000000000000');
    console.log(err);
 });
 
 
 async function initializeDatabase(connection) {
-   console.log('1');
    const droptable = "DROP TABLE IF EXISTS users";
    await connection.query(droptable);
-   console.log('0');
+   
    const createTable = "CREATE TABLE users (name VARCHAR(255), surname VARCHAR(255), password VARCHAR(255), email VARCHAR(255))";
    await connection.query(createTable);
    
-   console.log('2');
    const insert1 = "INSERT INTO users VALUES ('John', 'Doe', '123456', 'johndoe@email.com')";
    await connection.query(insert1);
    
-   console.log('3');
    const insert2 = "INSERT INTO users VALUES ('Patrick', 'Williams', '567890', 'patrick@email.com')";
    await connection.query(insert2);
    
-   console.log('4');
    const insert3 = "INSERT INTO users VALUES ('admin', 'admin', 'Sup3Rs3CuR3p4SSW0rD', 'admin@email.com')";
    await connection.query(insert3);
 }
