@@ -54,7 +54,7 @@ initializeDatabase(connection).then(() => {
          if(logged_user[0][0] != null && logged_user[0][0].name != null) {
             responseStr += 'Enhorabuena, capturaste la bandera: c6gY7R <br> <br>';
             
-            if(logged_user[0][0].name == 'admin345') {
+            if(req.query.uname == 'admin345') {
                responseStr += 'Enhorabuena, capturaste la segunda bandera: P9u7h2';
             } else {
                responseStr += 'Todavía queda otra bandera por capturar. <br>' 
