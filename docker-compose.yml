@@ -15,7 +15,7 @@ services:
     volumes:
       - ./www/:/var/www/html/
     ports:
-      - "30001:8080"
+      - "29999:8080"
     container_name: mi-nodejs-app
   mysql:
     image: mysql:5.7
